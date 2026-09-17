@@ -76,6 +76,22 @@
         gap: 12px;
       }
 
+      .entry-row {
+        display: flex;
+        gap: 12px;
+      }
+
+      .entry-row .card {
+        flex: 1;
+        min-width: 0;
+      }
+
+      @media (max-width: 600px) {
+        .entry-row {
+          flex-direction: column;
+        }
+      }
+
       a.card {
         display: flex;
         flex-direction: column;
@@ -201,11 +217,18 @@
             <span class="card-desc">CHELCIE landing page, where people can log in.</span>
             <span class="card-url">jershclerk.github.io/CHELCIE-demo/home-live</span>
           </a>
-          <a class="card" href="https://lendinglab.chelciehq.com" target="_blank" rel="noopener">
-            <span class="card-title">Lending Lab</span>
-            <span class="card-desc">Lendflow prototype.</span>
-            <span class="card-url">lendinglab.chelciehq.com</span>
-          </a>
+          <div class="entry-row">
+            <a class="card" href="https://lendinglab.chelciehq.com" target="_blank" rel="noopener">
+              <span class="card-title">Lending Lab</span>
+              <span class="card-desc">Lendflow prototype.</span>
+              <span class="card-url">lendinglab.chelciehq.com</span>
+            </a>
+            <a class="card" href="./lending-lab-ux-changelog.html">
+              <span class="card-title">UX Change Log</span>
+              <span class="card-desc">Review notes for the Lending Lab refinement pass.</span>
+              <span class="card-url">Lending Lab &rarr; UX changes</span>
+            </a>
+          </div>
         </div>
       </div>
 
