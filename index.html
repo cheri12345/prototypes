@@ -445,11 +445,16 @@
       <div class="date-group">
         <p class="date-label">September 17, 2026</p>
         <div class="entries">
-          <a class="card" href="https://cheri12345.github.io/request-access-prototype/" target="_blank" rel="noopener">
-            <span class="card-title">Request Access</span>
-            <span class="card-desc">Redesigned sign-up flow for CHELCIE HQ &mdash; side-selector cards, inline validation, and a reassurance panel instead of a plain contact form.</span>
-            <span class="card-url">cheri12345.github.io/request-access-prototype</span>
-          </a>
+          <div class="combo-card">
+            <a class="card-main" href="https://cheri12345.github.io/request-access-prototype/" target="_blank" rel="noopener">
+              <span class="card-title">Request Access</span>
+              <span class="card-desc">Redesigned sign-up flow for CHELCIE HQ &mdash; side-selector cards, inline validation, and a reassurance panel instead of a plain contact form.</span>
+              <span class="card-url">cheri12345.github.io/request-access-prototype</span>
+            </a>
+            <div class="card-footer">
+              <button type="button" class="changelog-trigger" id="open-request-access-changelog">UX Change Log &rarr;</button>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -692,6 +697,47 @@
         </div>
       </div>
     </div>
+
+    <div class="modal-overlay" id="request-access-changelog-modal">
+      <div class="modal">
+        <div class="modal-head">
+          <h2>Request Access &mdash; UX Change Log</h2>
+          <button type="button" class="modal-close" id="close-request-access-changelog">Close</button>
+        </div>
+        <ol class="changelog-list">
+          <li>
+            <p class="item-title">Keep it within one viewport</p>
+            <p class="item-desc">
+              Design the intake so the entire experience is visible without scrolling. The goal is to make
+              getting started feel quick and easy.
+            </p>
+          </li>
+          <li>
+            <p class="item-title">Two-column structure</p>
+            <p class="item-desc">
+              Left: reassurance &mdash; reviewed within 24 hours, fast response, privacy, and an option to
+              contact us directly. Right: the absolute minimum intake needed to understand who they are and
+              get them started.
+            </p>
+          </li>
+          <li>
+            <p class="item-title">Keep the interaction lightweight</p>
+            <p class="item-desc">
+              We should avoid making this feel like an application. The visual experience should communicate:
+              &ldquo;This is easy &mdash; I can do this now.&rdquo;
+            </p>
+          </li>
+          <li>
+            <p class="item-title">Request Access vs Sign Up</p>
+            <p class="item-desc">
+              This feels like a strategic/product decision rather than just a UX copy choice: Request Access
+              &rarr; more curated / controlled. Sign Up &rarr; more open / immediate. I&rsquo;d want to align
+              on which signal we want CHELCIE to send before locking the CTA.
+            </p>
+          </li>
+        </ol>
+      </div>
+    </div>
     <script>
       (function () {
         var PASSWORD = "chelcie2026";
@@ -745,6 +791,7 @@
 
       setupChangelogModal("changelog-modal", "open-changelog", "close-changelog");
       setupChangelogModal("chelcie-changelog-modal", "open-chelcie-changelog", "close-chelcie-changelog");
+      setupChangelogModal("request-access-changelog-modal", "open-request-access-changelog", "close-request-access-changelog");
     </script>
   </body>
 </html>
