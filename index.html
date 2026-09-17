@@ -118,9 +118,75 @@
         font-size: 13px;
         color: #52525b;
       }
+
+      body.locked .wrap {
+        display: none;
+      }
+
+      .gate {
+        display: none;
+        min-height: 100vh;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        inset: 0;
+        background: #0a0a0a;
+      }
+
+      body.locked .gate {
+        display: flex;
+      }
+
+      .gate-box {
+        width: 100%;
+        max-width: 320px;
+        padding: 0 24px;
+        text-align: center;
+      }
+
+      .gate-box p {
+        margin: 0 0 20px;
+        color: #a1a1aa;
+        font-size: 14px;
+      }
+
+      .gate-box input {
+        width: 100%;
+        background: #141414;
+        border: 1px solid #262626;
+        border-radius: 10px;
+        padding: 12px 14px;
+        color: #f5f5f5;
+        font-family: inherit;
+        font-size: 14px;
+        text-align: center;
+        outline: none;
+      }
+
+      .gate-box input:focus {
+        border-color: #52525b;
+      }
+
+      .gate-error {
+        margin-top: 12px;
+        font-size: 13px;
+        color: #a1a1aa;
+        visibility: hidden;
+      }
+
+      .gate-error.show {
+        visibility: visible;
+      }
     </style>
   </head>
-  <body>
+  <body class="locked">
+    <div class="gate">
+      <div class="gate-box">
+        <p>Password required</p>
+        <input type="password" id="gate-input" autocomplete="off" />
+        <p class="gate-error" id="gate-error">Wrong password.</p>
+      </div>
+    </div>
     <div class="wrap">
       <header>
         <h1>Prototypes</h1>
@@ -145,5 +211,33 @@
 
       <footer>Updated as new prototypes ship.</footer>
     </div>
+    <script>
+      (function () {
+        var PASSWORD = "chelcie2026";
+        var input = document.getElementById("gate-input");
+        var error = document.getElementById("gate-error");
+
+        function unlock() {
+          document.body.classList.remove("locked");
+          try {
+            sessionStorage.setItem("prototypes-unlocked", "1");
+          } catch (e) {}
+        }
+
+        try {
+          if (sessionStorage.getItem("prototypes-unlocked") === "1") unlock();
+        } catch (e) {}
+
+        input.addEventListener("keydown", function (e) {
+          if (e.key !== "Enter") return;
+          if (input.value === PASSWORD) {
+            unlock();
+          } else {
+            error.classList.add("show");
+            input.value = "";
+          }
+        });
+      })();
+    </script>
   </body>
 </html>
