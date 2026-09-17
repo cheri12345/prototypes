@@ -76,22 +76,6 @@
         gap: 12px;
       }
 
-      .entry-row {
-        display: flex;
-        gap: 12px;
-      }
-
-      .entry-row .card {
-        flex: 1;
-        min-width: 0;
-      }
-
-      @media (max-width: 600px) {
-        .entry-row {
-          flex-direction: column;
-        }
-      }
-
       a.card {
         display: flex;
         flex-direction: column;
@@ -109,6 +93,47 @@
         border-color: #52525b;
         background: #181818;
         transform: translateY(-2px);
+      }
+
+      .combo-card {
+        background: #141414;
+        border: 1px solid #262626;
+        border-radius: 14px;
+        transition: border-color 0.15s ease, background 0.15s ease;
+      }
+
+      .combo-card:hover {
+        border-color: #52525b;
+        background: #181818;
+      }
+
+      a.card-main {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        text-decoration: none;
+        color: inherit;
+        padding: 20px 22px 16px;
+      }
+
+      .card-footer {
+        border-top: 1px solid #262626;
+        padding: 10px 22px;
+      }
+
+      .changelog-trigger {
+        background: none;
+        border: none;
+        padding: 0;
+        color: #a1a1aa;
+        font-family: inherit;
+        font-size: 12.5px;
+        letter-spacing: 0.02em;
+        cursor: pointer;
+      }
+
+      .changelog-trigger:hover {
+        color: #f5f5f5;
       }
 
       .card-title {
@@ -193,6 +218,170 @@
       .gate-error.show {
         visibility: visible;
       }
+
+      .modal-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.7);
+        align-items: flex-start;
+        justify-content: center;
+        padding: 48px 20px;
+        overflow-y: auto;
+        z-index: 100;
+      }
+
+      .modal-overlay.open {
+        display: flex;
+      }
+
+      .modal {
+        width: 100%;
+        max-width: 780px;
+        background: #141414;
+        border: 1px solid #262626;
+        border-radius: 16px;
+        padding: 32px 32px 36px;
+      }
+
+      .modal-head {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 16px;
+      }
+
+      .modal-head h2 {
+        font-size: 20px;
+        font-weight: 700;
+        margin: 0;
+      }
+
+      .modal-close {
+        background: none;
+        border: 1px solid #262626;
+        border-radius: 8px;
+        color: #a1a1aa;
+        font-family: inherit;
+        font-size: 13px;
+        padding: 6px 10px;
+        cursor: pointer;
+        flex-shrink: 0;
+      }
+
+      .modal-close:hover {
+        color: #f5f5f5;
+        border-color: #52525b;
+      }
+
+      .modal-overall {
+        font-size: 13.5px;
+        color: #a1a1aa;
+        line-height: 1.6;
+        margin: 0 0 28px;
+      }
+
+      .modal-overall strong {
+        color: #f5f5f5;
+      }
+
+      .modal table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 32px;
+        font-size: 13px;
+      }
+
+      .modal thead th {
+        text-align: left;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #71717a;
+        padding: 0 14px 10px 0;
+        border-bottom: 1px solid #262626;
+      }
+
+      .modal tbody td {
+        padding: 13px 14px 13px 0;
+        border-bottom: 1px solid #1f1f1f;
+        vertical-align: top;
+        line-height: 1.5;
+      }
+
+      .modal tbody tr:last-child td {
+        border-bottom: none;
+      }
+
+      .modal td.change {
+        color: #f5f5f5;
+        width: 40%;
+      }
+
+      .modal td.why {
+        color: #a1a1aa;
+      }
+
+      .principle {
+        background: #0f0f0f;
+        border: 1px solid #262626;
+        border-radius: 12px;
+        padding: 22px 22px;
+      }
+
+      .principle h3 {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #71717a;
+        margin: 0 0 14px;
+      }
+
+      .principle p {
+        font-size: 13.5px;
+        line-height: 1.6;
+        margin: 0 0 10px;
+      }
+
+      .principle p:last-child {
+        margin-bottom: 0;
+        color: #a1a1aa;
+      }
+
+      .principle p.lead {
+        font-weight: 700;
+      }
+
+      @media (max-width: 640px) {
+        .modal {
+          padding: 24px 20px 28px;
+        }
+        .modal table,
+        .modal thead,
+        .modal tbody,
+        .modal th,
+        .modal td,
+        .modal tr {
+          display: block;
+        }
+        .modal thead {
+          display: none;
+        }
+        .modal tbody tr {
+          padding: 14px 0;
+          border-bottom: 1px solid #1f1f1f;
+        }
+        .modal td {
+          padding: 2px 0;
+          border-bottom: none;
+        }
+        .modal td.change {
+          width: auto;
+        }
+      }
     </style>
   </head>
   <body class="locked">
@@ -217,22 +406,159 @@
             <span class="card-desc">CHELCIE landing page, where people can log in.</span>
             <span class="card-url">jershclerk.github.io/CHELCIE-demo/home-live</span>
           </a>
-          <div class="entry-row">
-            <a class="card" href="https://lendinglab.chelciehq.com" target="_blank" rel="noopener">
+          <div class="combo-card">
+            <a class="card-main" href="https://lendinglab.chelciehq.com" target="_blank" rel="noopener">
               <span class="card-title">Lending Lab</span>
               <span class="card-desc">Lendflow prototype.</span>
               <span class="card-url">lendinglab.chelciehq.com</span>
             </a>
-            <a class="card" href="./lending-lab-ux-changelog.html">
-              <span class="card-title">UX Change Log</span>
-              <span class="card-desc">Review notes for the Lending Lab refinement pass.</span>
-              <span class="card-url">Lending Lab &rarr; UX changes</span>
-            </a>
+            <div class="card-footer">
+              <button type="button" class="changelog-trigger" id="open-changelog">UX Change Log &rarr;</button>
+            </div>
           </div>
         </div>
       </div>
 
       <footer>Updated as new prototypes ship.</footer>
+    </div>
+
+    <div class="modal-overlay" id="changelog-modal">
+      <div class="modal">
+        <div class="modal-head">
+          <h2>Lending Lab &mdash; UX Change Log</h2>
+          <button type="button" class="modal-close" id="close-changelog">Close</button>
+        </div>
+        <p class="modal-overall">
+          <strong>Overall:</strong> The foundation is strong. This is a refinement pass focused on clarity,
+          hierarchy, trust and reducing friction &mdash; not a major redesign.
+        </p>
+        <table>
+          <thead>
+            <tr>
+              <th>Change</th>
+              <th>Why</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="change">Apply CHELCIE brand colours + typography</td>
+              <td class="why">Makes Lending Lab feel connected to the CHELCIE ecosystem and less generic/AI-generated.</td>
+            </tr>
+            <tr>
+              <td class="change">Remove duplicate &ldquo;Lending Lab / Powered by CHELCIE&rdquo;</td>
+              <td class="why">Reduces clutter and gives the value proposition more space.</td>
+            </tr>
+            <tr>
+              <td class="change">Use sentence case, not ALL CAPS</td>
+              <td class="why">Improves readability and feels more aligned with CHELCIE&rsquo;s brand.</td>
+            </tr>
+            <tr>
+              <td class="change">Remove &ldquo;Live&rdquo; badge</td>
+              <td class="why">&ldquo;Live&rdquo; is ambiguous and creates unnecessary visual competition.</td>
+            </tr>
+            <tr>
+              <td class="change">Replace &ldquo;Live&rdquo; with &ldquo;Decision in minutes&rdquo;</td>
+              <td class="why">Communicates a meaningful user benefit rather than a status.</td>
+            </tr>
+            <tr>
+              <td class="change">Remove green dot from &ldquo;Indicative terms&rdquo;</td>
+              <td class="why">A green status dot suggests something is live/available, which is misleading here.</td>
+            </tr>
+            <tr>
+              <td class="change">Link &ldquo;Powered by CHELCIE&rdquo; to CHELCIE</td>
+              <td class="why">Gives users a clear route back to the parent brand.</td>
+            </tr>
+            <tr>
+              <td class="change">Reduce primary CTAs</td>
+              <td class="why">Repeating &ldquo;Start Funding&rdquo; everywhere dilutes its impact.</td>
+            </tr>
+            <tr>
+              <td class="change">Hero: keep one strong &ldquo;Start Funding&rdquo; CTA under Capital Access</td>
+              <td class="why">Creates a clear relationship between the proposition and the action.</td>
+            </tr>
+            <tr>
+              <td class="change">Remove left-side Start Funding button</td>
+              <td class="why">Avoids competing CTAs in the hero.</td>
+            </tr>
+            <tr>
+              <td class="change">Navigation: retain Start Funding while scrolling</td>
+              <td class="why">Keeps the action accessible without repeatedly dominating the page.</td>
+            </tr>
+            <tr>
+              <td class="change">Small Loans section: make Start Funding a text link</td>
+              <td class="why">This section is primarily for exploring needs/terms; the CTA doesn&rsquo;t need to compete visually.</td>
+            </tr>
+            <tr>
+              <td class="change">Review/remove &ldquo;See How It Works&rdquo; hero CTA</td>
+              <td class="why">The How It Works content is immediately below, so the extra CTA may be unnecessary.</td>
+            </tr>
+            <tr>
+              <td class="change">Make key metrics more prominent</td>
+              <td class="why">Users should understand the core proof points while scanning the page.</td>
+            </tr>
+            <tr>
+              <td class="change">Make Steps 1&ndash;4 visually larger</td>
+              <td class="why">Makes the four-step process immediately scannable.</td>
+            </tr>
+            <tr>
+              <td class="change">Remove hover states from non-clickable elements</td>
+              <td class="why">Avoids implying interactions that don&rsquo;t exist.</td>
+            </tr>
+            <tr>
+              <td class="change">Remove unnecessary &ldquo;Loans&rdquo; subtitles</td>
+              <td class="why">Lets the stronger headline do the work and reduces visual noise.</td>
+            </tr>
+            <tr>
+              <td class="change">Align the content cards</td>
+              <td class="why">Small visual refinement for consistency and polish.</td>
+            </tr>
+            <tr>
+              <td class="change">Keep the funding simulator</td>
+              <td class="why">Gives users a tangible way to understand their potential funding needs.</td>
+            </tr>
+            <tr>
+              <td class="change">Lead with &ldquo;Does not affect your business credit&rdquo;</td>
+              <td class="why">Addresses a key concern users may have before starting a funding journey.</td>
+            </tr>
+            <tr>
+              <td class="change">Update the CHELCIE logo in the application widget</td>
+              <td class="why">Ensures the application experience feels authentically CHELCIE-branded.</td>
+            </tr>
+            <tr>
+              <td class="change">Keep the current application flow for now</td>
+              <td class="why">It achieves the immediate &ldquo;get it live&rdquo; goal; deeper flow improvements can come later.</td>
+            </tr>
+            <tr>
+              <td class="change">Make Eligibility more prominent</td>
+              <td class="why">Users need to quickly understand whether Lending Lab is relevant to them.</td>
+            </tr>
+            <tr>
+              <td class="change">Put Eligibility before Start Funding</td>
+              <td class="why">Prevents users from investing time in an application only to discover they aren&rsquo;t eligible.</td>
+            </tr>
+            <tr>
+              <td class="change">Journey: Eligibility &rarr; Start Funding &rarr; Application</td>
+              <td class="why">Creates a clearer, more supportive progression into the lending flow.</td>
+            </tr>
+            <tr>
+              <td class="change">Keep &ldquo;Free to check&rdquo;, &ldquo;10 minutes to apply&rdquo; &amp; &ldquo;Clear terms&rdquo;</td>
+              <td class="why">Strong reassurance points that reduce perceived risk and friction.</td>
+            </tr>
+            <tr>
+              <td class="change">Keep &ldquo;Capital coordination, minus the friction&rdquo;</td>
+              <td class="why">Strong, simple articulation of the product proposition.</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="principle">
+          <h3>The key principle</h3>
+          <p class="lead">Make the important things easy to find, without making everything visually loud.</p>
+          <p>
+            We want users to be able to understand &rarr; check eligibility &rarr; start funding without
+            unnecessary clutter, competing CTAs or misleading interactions.
+          </p>
+        </div>
+      </div>
     </div>
     <script>
       (function () {
@@ -259,6 +585,29 @@
             error.classList.add("show");
             input.value = "";
           }
+        });
+      })();
+
+      (function () {
+        var modal = document.getElementById("changelog-modal");
+        var openBtn = document.getElementById("open-changelog");
+        var closeBtn = document.getElementById("close-changelog");
+
+        function open() {
+          modal.classList.add("open");
+        }
+
+        function close() {
+          modal.classList.remove("open");
+        }
+
+        openBtn.addEventListener("click", open);
+        closeBtn.addEventListener("click", close);
+        modal.addEventListener("click", function (e) {
+          if (e.target === modal) close();
+        });
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape") close();
         });
       })();
     </script>
