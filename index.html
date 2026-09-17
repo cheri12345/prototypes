@@ -324,6 +324,50 @@
         color: #a1a1aa;
       }
 
+      .changelog-list {
+        list-style: none;
+        margin: 0 0 32px;
+        padding: 0;
+        counter-reset: changelog;
+      }
+
+      .changelog-list li {
+        counter-increment: changelog;
+        padding: 16px 0;
+        border-bottom: 1px solid #1f1f1f;
+      }
+
+      .changelog-list li:first-child {
+        padding-top: 0;
+      }
+
+      .changelog-list li:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+
+      .changelog-list .item-title {
+        display: flex;
+        gap: 10px;
+        font-size: 14.5px;
+        font-weight: 700;
+        color: #f5f5f5;
+        margin: 0 0 6px;
+      }
+
+      .changelog-list .item-title::before {
+        content: counter(changelog) ".";
+        color: #71717a;
+        flex-shrink: 0;
+      }
+
+      .changelog-list .item-desc {
+        font-size: 13.5px;
+        color: #a1a1aa;
+        line-height: 1.6;
+        margin: 0 0 0 24px;
+      }
+
       .principle {
         background: #0f0f0f;
         border: 1px solid #262626;
@@ -401,11 +445,16 @@
       <div class="date-group">
         <p class="date-label">September 16, 2026</p>
         <div class="entries">
-          <a class="card" href="https://jershclerk.github.io/CHELCIE-demo/home-live/" target="_blank" rel="noopener">
-            <span class="card-title">CHELCIE HQ</span>
-            <span class="card-desc">CHELCIE landing page, where people can log in.</span>
-            <span class="card-url">jershclerk.github.io/CHELCIE-demo/home-live</span>
-          </a>
+          <div class="combo-card">
+            <a class="card-main" href="https://jershclerk.github.io/CHELCIE-demo/home-live/" target="_blank" rel="noopener">
+              <span class="card-title">CHELCIE HQ</span>
+              <span class="card-desc">CHELCIE landing page, where people can log in.</span>
+              <span class="card-url">jershclerk.github.io/CHELCIE-demo/home-live</span>
+            </a>
+            <div class="card-footer">
+              <button type="button" class="changelog-trigger" id="open-chelcie-changelog">UX Change Log &rarr;</button>
+            </div>
+          </div>
           <div class="combo-card">
             <a class="card-main" href="https://lendinglab.chelciehq.com" target="_blank" rel="noopener">
               <span class="card-title">Lending Lab</span>
@@ -560,6 +609,78 @@
         </div>
       </div>
     </div>
+
+    <div class="modal-overlay" id="chelcie-changelog-modal">
+      <div class="modal">
+        <div class="modal-head">
+          <h2>CHELCIE HQ &mdash; UX Change Log</h2>
+          <button type="button" class="modal-close" id="close-chelcie-changelog">Close</button>
+        </div>
+        <ol class="changelog-list">
+          <li>
+            <p class="item-title">Simplified the top navigation</p>
+            <p class="item-desc">
+              Made the navigation more seamless and visually quieter so it doesn&rsquo;t compete with the hero.
+              The focus should land first on what CHELCIE is and why it matters.
+            </p>
+          </li>
+          <li>
+            <p class="item-title">Strengthened the first-viewport hierarchy</p>
+            <p class="item-desc">
+              Kept &ldquo;Trust infrastructure for committed capital / Fund with confidence&rdquo; as the core
+              proposition, with less competing messaging around it. Designed for people who scan rather than read.
+            </p>
+          </li>
+          <li>
+            <p class="item-title">Brought credibility metrics higher</p>
+            <p class="item-desc">
+              Moved the 46,479 / 3,608 / 8 metrics into the initial experience so credibility and scale are
+              established immediately, without requiring someone to read deeper into the page.
+            </p>
+          </li>
+          <li>
+            <p class="item-title">Elevated the key differentiation</p>
+            <p class="item-desc">
+              Moved &ldquo;Approval is where most platforms stop. It is where CHELCIE starts.&rdquo; higher because
+              it quickly answers why CHELCIE is different from existing tools.
+            </p>
+          </li>
+          <li>
+            <p class="item-title">Reordered the story</p>
+            <p class="item-desc">
+              The flow is now: What is CHELCIE? &rarr; Proof &rarr; Why it&rsquo;s different &rarr; How it works
+              &rarr; Why now &rarr; What each side gets &rarr; CTA. This gives someone a clearer mental model
+              before asking them to take action.
+            </p>
+          </li>
+          <li>
+            <p class="item-title">Made the two-sided system clearer</p>
+            <p class="item-desc">
+              Kept the funder-first direction, while making the relationship between the funder record and
+              recipient experience more explicit.
+            </p>
+          </li>
+          <li>
+            <p class="item-title">CTA hierarchy</p>
+            <p class="item-desc">
+              Kept both Request Access / Sign Up and See Funder View for now. The primary action should be made
+              deliberate rather than letting two buttons compete by default.
+            </p>
+          </li>
+        </ol>
+        <div class="principle">
+          <h3>Overall</h3>
+          <p class="lead">
+            I don&rsquo;t think we have a content problem &mdash; we have an opportunity to sharpen the hierarchy
+            and sequencing of the strong content we already have.
+          </p>
+          <p>
+            I&rsquo;ve also kept the direction aligned with the CHELCIE brand principles of clarity, calm
+            authority and structured intelligence.
+          </p>
+        </div>
+      </div>
+    </div>
     <script>
       (function () {
         var PASSWORD = "chelcie2026";
@@ -588,10 +709,10 @@
         });
       })();
 
-      (function () {
-        var modal = document.getElementById("changelog-modal");
-        var openBtn = document.getElementById("open-changelog");
-        var closeBtn = document.getElementById("close-changelog");
+      function setupChangelogModal(modalId, openId, closeId) {
+        var modal = document.getElementById(modalId);
+        var openBtn = document.getElementById(openId);
+        var closeBtn = document.getElementById(closeId);
 
         function open() {
           modal.classList.add("open");
@@ -609,7 +730,10 @@
         document.addEventListener("keydown", function (e) {
           if (e.key === "Escape") close();
         });
-      })();
+      }
+
+      setupChangelogModal("changelog-modal", "open-changelog", "close-changelog");
+      setupChangelogModal("chelcie-changelog-modal", "open-chelcie-changelog", "close-chelcie-changelog");
     </script>
   </body>
 </html>
