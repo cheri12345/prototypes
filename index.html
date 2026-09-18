@@ -471,11 +471,16 @@
               <button type="button" class="changelog-trigger" id="open-request-access-changelog">UX Change Log &rarr;</button>
             </div>
           </div>
-          <a class="card" href="https://cheri12345.github.io/onboarding-v2/" target="_blank" rel="noopener">
-            <span class="card-title">Focused onboarding</span>
-            <span class="card-desc">An alternate take on collecting org info, documents, and financials to connect an organization &mdash; intro trailer screen, phase-transition screens, and a top progress bar so it's easy to see what's left.</span>
-            <span class="card-url">cheri12345.github.io/onboarding-v2</span>
-          </a>
+          <div class="combo-card">
+            <a class="card-main" href="https://cheri12345.github.io/onboarding-v2/" target="_blank" rel="noopener">
+              <span class="card-title">Focused onboarding</span>
+              <span class="card-desc">An alternate take on collecting org info, documents, and financials to connect an organization &mdash; intro trailer screen, phase-transition screens, and a top progress bar so it's easy to see what's left.</span>
+              <span class="card-url">cheri12345.github.io/onboarding-v2</span>
+            </a>
+            <div class="card-footer">
+              <button type="button" class="changelog-trigger" id="open-onboarding-changelog">UX Change Log &rarr;</button>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -759,6 +764,64 @@
         </ol>
       </div>
     </div>
+
+    <div class="modal-overlay" id="onboarding-changelog-modal">
+      <div class="modal">
+        <div class="modal-head">
+          <h2>Focused Onboarding &mdash; UX Change Log</h2>
+          <button type="button" class="modal-close" id="close-onboarding-changelog">Close</button>
+        </div>
+        <ol class="changelog-list">
+          <li>
+            <p class="item-title">Designed the initial document and information intake</p>
+            <p class="item-desc">
+              Personalised entry &mdash; completing the core information upfront lets the dashboard be
+              personalised for organisations and users from the start.
+            </p>
+          </li>
+          <li>
+            <p class="item-title">Kept the experience lightweight</p>
+            <p class="item-desc">
+              Only a few items are visible at once. Reduces perceived effort: showing less at a time makes the
+              experience feel more manageable.
+            </p>
+          </li>
+          <li>
+            <p class="item-title">Made the progress indicator highly visible</p>
+            <p class="item-desc">
+              Sets expectations, giving people a clear sense of how much is involved before they commit to
+              finishing.
+            </p>
+          </li>
+          <li>
+            <p class="item-title">Framed the journey around 3 core things to complete</p>
+            <p class="item-desc">
+              Sets expectations upfront and protects momentum &mdash; avoids overwhelming people before
+              they&rsquo;ve even entered the product.
+            </p>
+          </li>
+          <li>
+            <p class="item-title">Used generous negative space and CHELCIE&rsquo;s editorial direction</p>
+            <p class="item-desc">
+              Calm by design &mdash; negative space supports busy users and makes the experience feel less
+              administrative.
+            </p>
+          </li>
+        </ol>
+        <div class="principle">
+          <h3>One thing I&rsquo;m questioning</h3>
+          <p class="lead">Do we actually need all of this information upfront?</p>
+          <p>
+            There may be an opportunity to ask for the absolute minimum, get users into CHELCIE faster, and
+            collect additional information contextually once they&rsquo;re already in the product.
+          </p>
+          <p>
+            Key trade-off: more context upfront means a more complete setup, versus less upfront meaning faster
+            entry and stronger momentum.
+          </p>
+        </div>
+      </div>
+    </div>
     <script>
       (function () {
         var PASSWORD = "chelcie2026";
@@ -813,6 +876,7 @@
       setupChangelogModal("changelog-modal", "open-changelog", "close-changelog");
       setupChangelogModal("chelcie-changelog-modal", "open-chelcie-changelog", "close-chelcie-changelog");
       setupChangelogModal("request-access-changelog-modal", "open-request-access-changelog", "close-request-access-changelog");
+      setupChangelogModal("onboarding-changelog-modal", "open-onboarding-changelog", "close-onboarding-changelog");
     </script>
   </body>
 </html>
