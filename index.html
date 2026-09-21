@@ -95,6 +95,34 @@
         transform: translateY(-2px);
       }
 
+      .card {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        background: #141414;
+        border: 1px solid #262626;
+        border-radius: 14px;
+        padding: 20px 22px;
+      }
+
+      .card.card-static {
+        cursor: default;
+      }
+
+      .static-badge {
+        display: inline-block;
+        font-size: 10.5px;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        color: #71717a;
+        border: 1px solid #262626;
+        border-radius: 999px;
+        padding: 1px 8px;
+        margin-left: 10px;
+        font-weight: 700;
+        vertical-align: 1px;
+      }
+
       .combo-card {
         background: #141414;
         border: 1px solid #262626;
@@ -445,11 +473,11 @@
       <div class="date-group">
         <p class="date-label">September 21, 2026</p>
         <div class="entries">
-          <a class="card" href="https://cheri12345.github.io/workspace/" target="_blank" rel="noopener">
-            <span class="card-title">Workspace</span>
+          <div class="card card-static">
+            <span class="card-title">Workspace<span class="static-badge">Not live yet</span></span>
             <span class="card-desc">First screen after onboarding completes &mdash; the Program Pathway Workspace landing dashboard. Four non-summed metric counters (committed, pipeline, deployed, mapped restoration) click through to filter a C-CHANGE initiative portfolio, each row expanding to baseline state, loss event, current state, gap type, and recovery plan, with autosaving program-manager notes and a PDF export.</span>
-            <span class="card-url">cheri12345.github.io/workspace</span>
-          </a>
+            <span class="card-url">Local prototype only &mdash; not deployed</span>
+          </div>
           <a class="card" href="https://cheri12345.github.io/org-admin/" target="_blank" rel="noopener">
             <span class="card-title">Workspace Admin</span>
             <span class="card-desc">Organization administration for CHELCIE &mdash; members, roles &amp; permissions, invites, and settings for whoever runs the workspace. Reached from the account menu once you're already in, not bolted onto onboarding.</span>
